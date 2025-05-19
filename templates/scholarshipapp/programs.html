@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+
+{% block title %}Scholarship Programs - EduScholarships{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="container">
+        <h1 class="display-4 mb-4">Scholarship Programs</h1>
+        <p class="lead">Discover opportunities that match your educational goals.</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mb-4">
+        <div class="col-md-4">
+            <div class="input-group">
+                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                <input type="text" class="form-control" id="searchPrograms" placeholder="Search programs...">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <select class="form-select" id="sortPrograms">
+                <option value="deadline">Sort by Deadline</option>
+                <option value="amount">Sort by Amount</option>
+                <option value="newest">Sort by Newest</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row">
+        {% for program in programs %}
+        <div class="col-md-6 mb-4 program-card">
+            <div class="card h-100 shadow-sm">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-start mb-3">
+                        <h3 class="card-title">{{ program.title }}</h3>
+                        <span class="badge bg-primary">${{ program.amount }}</span>
+                    </div>
+                    <p class="card-text">{{ program.description }}</p>
+                    <div class="mb-3">
+                        <h5>Requirements:</h5>
+                        <p>{{ program.requirements }}</p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <i class="fas fa-calendar-alt text-muted me-2"></i>
+                            <span class="text-muted">Deadline: {{ program.deadline|date:"F d, Y" }}</span>
+                        </div>
+                        {% if user.is_authenticated and not user.is_staff and not user.donor %}
+                            <a href="{% url 'apply_scholarship' program.id %}" class="btn btn-primary">Apply Now</a>
+                        {% elif user.donor %}
+                            <a href="{% url 'make_donation' program.id %}" class="btn btn-success">Support This Program</a>
+                        {% else %}
+                            <a href="{% url 'student_register' %}" class="btn btn-outline-primary">Register to Apply</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12">
+            <div class="alert alert-info text-center">
+                <i class="fas fa-info-circle me-2"></i>
+                No scholarship programs are available at the moment. Please check back later.
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<script>
+    // Search functionality
+    document.getElementById('searchPrograms').addEventListener('keyup', function(e) {
+        const searchText = e.target.value.toLowerCase();
+        const programs = document.querySelectorAll('.program-card');
+        
+        programs.forEach(program => {
+            const title = program.querySelector('.card-title').textContent.toLowerCase();
+            const description = program.querySelector('.card-text').textContent.toLowerCase();
+            
+            if (title.includes(searchText) || description.includes(searchText)) {
+                program.style.display = '';
+            } else {
+                program.style.display = 'none';
+            }
+        });
+    });
+
+    // Sorting functionality
+    document.getElementById('sortPrograms').addEventListener('change', function(e) {
+        const programs = Array.from(document.querySelectorAll('.program-card'));
+        const container = document.querySelector('.row');
+        
+        programs.sort((a, b) => {
+            if (e.target.value === 'deadline') {
+                const dateA = new Date(a.querySelector('.text-muted').textContent.replace('Deadline: ', ''));
+                const dateB = new Date(b.querySelector('.text-muted').textContent.replace('Deadline: ', ''));
+                return dateA - dateB;
+            } else if (e.target.value === 'amount') {
+                const amountA = parseFloat(a.querySelector('.badge').textContent.replace('$', ''));
+                const amountB = parseFloat(b.querySelector('.badge').textContent.replace('$', ''));
+                return amountB - amountA;
+            } else {
+                return 0; // Keep original order for 'newest'
+            }
+        });
+        
+        programs.forEach(program => container.appendChild(program));
+    });
+</script>
+{% endblock %} 

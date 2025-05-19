@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}View Application{% endblock %}
+
+{% block content %}
+<style>
+    .application-detail {
+        background: #f8f9fa;
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    
+    .detail-section {
+        background: white;
+        border-radius: 10px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+        border-left: 5px solid var(--primary-color);
+    }
+    
+    .document-link {
+        display: inline-block;
+        padding: 0.5rem 1rem;
+        background: #e9ecef;
+        border-radius: 5px;
+        color: var(--primary-color);
+        text-decoration: none;
+        margin: 0.5rem 0;
+        transition: background 0.3s ease;
+    }
+    
+    .document-link:hover {
+        background: #dee2e6;
+    }
+    
+    .status-form {
+        background: white;
+        border-radius: 10px;
+        padding: 1.5rem;
+        margin-top: 2rem;
+        border-left: 5px solid var(--secondary-color);
+    }
+</style>
+
+<div class="application-detail">
+    <h2 class="mb-4">Application Details</h2>
+    
+    <div class="detail-section">
+        <h4>Student Information</h4>
+        <p><strong>Name:</strong> {{ application.student.user.get_full_name }}</p>
+        <p><strong>Email:</strong> {{ application.student.user.email }}</p>
+        <p><strong>Phone:</strong> {{ application.student.phone_number }}</p>
+        <p><strong>Address:</strong> {{ application.student.address }}</p>
+    </div>
+    
+    <div class="detail-section">
+        <h4>Program Information</h4>
+        <p><strong>Program:</strong> {{ application.program.name }}</p>
+        <p><strong>Amount:</strong> ${{ application.program.amount }}</p>
+        <p><strong>Application Date:</strong> {{ application.application_date|date:"F d, Y" }}</p>
+        <p><strong>Current Status:</strong> 
+            <span class="badge {% if application.status == 'approved' %}bg-success
+                           {% elif application.status == 'rejected' %}bg-danger
+                           {% else %}bg-warning{% endif %}">
+                {{ application.status|title }}
+            </span>
+        </p>
+    </div>
+    
+    <div class="detail-section">
+        <h4>Documents</h4>
+        {% if application.transcript %}
+        <a href="{{ application.transcript.url }}" class="document-link" target="_blank">
+            <i class="fas fa-file-alt me-2"></i>Academic Transcript
+        </a>
+        {% endif %}
+        {% if application.recommendation_letter %}
+        <a href="{{ application.recommendation_letter.url }}" class="document-link" target="_blank">
+            <i class="fas fa-file-alt me-2"></i>Recommendation Letter
+        </a>
+        {% endif %}
+    </div>
+    
+    <form method="post" class="status-form">
+        {% csrf_token %}
+        <h4>Update Application Status</h4>
+        <div class="mb-3">
+            <select name="status" class="form-select">
+                <option value="pending" {% if application.status == 'pending' %}selected{% endif %}>Pending</option>
+                <option value="approved" {% if application.status == 'approved' %}selected{% endif %}>Approved</option>
+                <option value="rejected" {% if application.status == 'rejected' %}selected{% endif %}>Rejected</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Update Status</button>
+    </form>
+</div>
+{% endblock %} 

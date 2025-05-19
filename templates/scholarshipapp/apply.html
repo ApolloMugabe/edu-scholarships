@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Apply for Scholarship - EduScholarships{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Scholarship Application</h2>
+
+                    <div class="mb-4">
+                        <h4>Program Details</h4>
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ program.title }}</h5>
+                                <p class="card-text">{{ program.description }}</p>
+                                <div class="mb-3">
+                                    <h6>Requirements:</h6>
+                                    <p>{{ program.requirements }}</p>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="text-primary">
+                                        <strong>Amount:</strong> ${{ program.amount }}
+                                    </span>
+                                    <span class="text-muted">
+                                        <i class="fas fa-calendar-alt me-2"></i>
+                                        Deadline: {{ program.deadline|date:"F d, Y" }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
+                        {% csrf_token %}
+
+                        <div class="mb-4">
+                            <label for="{{ form.motivation_letter.id_for_label }}" class="form-label">
+                                Motivation Letter
+                                <span class="text-danger">*</span>
+                            </label>
+                            {% render_field form.motivation_letter class="form-control" %}
+                            <small class="text-muted">
+                                Explain why you deserve this scholarship and how it will help you achieve your educational goals.
+                            </small>
+                            {% if form.motivation_letter.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.motivation_letter.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="{{ form.academic_records.id_for_label }}" class="form-label">
+                                Academic Records
+                                <span class="text-danger">*</span>
+                            </label>
+                            <div class="input-group">
+                                {% render_field form.academic_records class="form-control" %}
+                            </div>
+                            <small class="text-muted">
+                                Upload your academic transcripts, certificates, or any relevant academic documents (PDF format preferred).
+                            </small>
+                            {% if form.academic_records.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.academic_records.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="alert alert-info">
+                            <h5 class="alert-heading">
+                                <i class="fas fa-info-circle me-2"></i>
+                                Application Guidelines
+                            </h5>
+                            <ul class="mb-0">
+                                <li>Make sure your motivation letter is clear, concise, and compelling.</li>
+                                <li>Academic records should be official documents from your educational institution.</li>
+                                <li>All information provided will be kept confidential.</li>
+                                <li>You will receive a confirmation email once your application is submitted.</li>
+                            </ul>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-paper-plane me-2"></i>
+                                Submit Application
+                            </button>
+                            <a href="{% url 'scholarship_programs' %}" class="btn btn-outline-secondary">
+                                Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card mt-4 shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title">Tips for a Strong Application</h4>
+                    <div class="row">
+                        <div class="col-md-4 text-center mb-3">
+                            <i class="fas fa-pencil-alt fa-2x text-primary mb-2"></i>
+                            <h5>Be Specific</h5>
+                            <p class="small">Clearly explain your goals and how this scholarship will help achieve them.</p>
+                        </div>
+                        <div class="col-md-4 text-center mb-3">
+                            <i class="fas fa-check-double fa-2x text-primary mb-2"></i>
+                            <h5>Proofread</h5>
+                            <p class="small">Review your application for grammar and spelling errors.</p>
+                        </div>
+                        <div class="col-md-4 text-center mb-3">
+                            <i class="fas fa-clock fa-2x text-primary mb-2"></i>
+                            <h5>Submit Early</h5>
+                            <p class="small">Don't wait until the last minute to submit your application.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Form validation
+    (function () {
+        'use strict'
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+
+    // File input preview
+    document.querySelector('input[type="file"]').addEventListener('change', function(e) {
+        const fileName = e.target.files[0]?.name || 'No file chosen'
+        const label = document.querySelector('.custom-file-label')
+        if (label) {
+            label.textContent = fileName
+        }
+    })
+</script>
+{% endblock %} 

@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Success Stories - EduScholarships{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="py-5 text-center text-white" style="background: url('{% static 'img/testimonials-bg.jpg' %}') center/cover no-repeat;">
+    <div class="container">
+        <h1 class="display-4 fw-bold">Success Stories</h1>
+        <p class="lead">Real journeys, real impact—see how our scholarships change lives.</p>
+    </div>
+</section>
+
+<!-- Highlight Stats -->
+<section class="bg-light py-5">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-4 mb-4">
+                <div class="p-4 bg-white shadow rounded">
+                    <i class="fas fa-users fa-2x text-primary mb-2"></i>
+                    <h3 class="fw-bold">1000+</h3>
+                    <p class="mb-0">Students Supported</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="p-4 bg-white shadow rounded">
+                    <i class="fas fa-graduation-cap fa-2x text-success mb-2"></i>
+                    <h3 class="fw-bold">95%</h3>
+                    <p class="mb-0">Success Rate</p>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="p-4 bg-white shadow rounded">
+                    <i class="fas fa-globe fa-2x text-warning mb-2"></i>
+                    <h3 class="fw-bold">50+</h3>
+                    <p class="mb-0">Countries Reached</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonials -->
+<section class="py-5">
+    <div class="container">
+        <h2 class="text-center mb-5">What Our Scholars Say</h2>
+        <div class="row">
+            <!-- Testimonial 1 -->
+            <div class="col-md-6 mb-4">
+                <div class="border rounded p-4 shadow-sm h-100 bg-white">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="{% static 'img/testimonials/student1.jpg' %}" alt="Jane Doe" class="rounded-circle me-3" width="60" height="60">
+                        <div>
+                            <h5 class="mb-0">Jane Doe</h5>
+                            <small class="text-muted">Medical Student, Kenya</small>
+                        </div>
+                    </div>
+                    <p class="fst-italic text-muted">"This scholarship changed my life. I am now pursuing my dream of becoming a doctor. Thank you EduScholarships!"</p>
+                </div>
+            </div>
+
+            <!-- Testimonial 2 -->
+            <div class="col-md-6 mb-4">
+                <div class="border rounded p-4 shadow-sm h-100 bg-white">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="{% static 'img/testimonials/student2.jpg' %}" alt="Carlos Ramirez" class="rounded-circle me-3" width="60" height="60">
+                        <div>
+                            <h5 class="mb-0">Carlos Ramirez</h5>
+                            <small class="text-muted">Engineering Graduate, Mexico</small>
+                        </div>
+                    </div>
+                    <p class="fst-italic text-muted">"Without the support of EduScholarships, I wouldn’t have been able to attend university. I now work as a civil engineer."</p>
+                </div>
+            </div>
+
+            <!-- Testimonial 3 -->
+            <div class="col-md-6 mb-4">
+                <div class="border rounded p-4 shadow-sm h-100 bg-white">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="{% static 'img/testimonials/student3.jpg' %}" alt="Fatima Ali" class="rounded-circle me-3" width="60" height="60">
+                        <div>
+                            <h5 class="mb-0">Fatima Ali</h5>
+                            <small class="text-muted">Law Student, Nigeria</small>
+                        </div>
+                    </div>
+                    <p class="fst-italic text-muted">"The financial help I received gave me hope and a future. I’m proud to be part of this community."</p>
+                </div>
+            </div>
+
+            <!-- Testimonial 4 -->
+            <div class="col-md-6 mb-4">
+                <div class="border rounded p-4 shadow-sm h-100 bg-white">
+                    <div class="d-flex align-items-center mb-3">
+                        <img src="{% static 'img/testimonials/student4.jpg' %}" alt="Liam Chen" class="rounded-circle me-3" width="60" height="60">
+                        <div>
+                            <h5 class="mb-0">Liam Chen</h5>
+                            <small class="text-muted">IT Professional, Malaysia</small>
+                        </div>
+                    </div>
+                    <p class="fst-italic text-muted">"I received a full scholarship and graduated top of my class. Now, I’m working in tech and giving back through mentoring."</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Share Story CTA -->
+<section class="bg-primary text-white py-5">
+    <div class="container text-center">
+        <h2>Share Your Success Story</h2>
+        <p class="lead">Inspire others by sharing your journey as a scholarship recipient.</p>
+        <a href="{% url 'contact' %}" class="btn btn-outline-light btn-lg">
+            <i class="fas fa-paper-plane me-2"></i>Submit Your Story
+        </a>
+    </div>
+</section>
+
+<!-- Extended Impact Stats -->
+<section class="py-5 bg-light">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2 class="section-title">Our Global Impact</h2>
+            <p class="lead">Empowering futures around the world through education</p>
+        </div>
+        <div class="row text-center">
+            <div class="col-md-3 mb-4">
+                <div class="p-4 bg-white shadow rounded">
+                    <i class="fas fa-graduation-cap fa-2x text-success mb-2"></i>
+                    <h3 class="fw-bold">85%</h3>
+                    <p>Graduation Rate</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="p-4 bg-white shadow rounded">
+                    <i class="fas fa-briefcase fa-2x text-info mb-2"></i>
+                    <h3 class="fw-bold">92%</h3>
+                    <p>Employment Rate</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="p-4 bg-white shadow rounded">
+                    <i class="fas fa-globe fa-2x text-warning mb-2"></i>
+                    <h3 class="fw-bold">50+</h3>
+                    <p>Countries Reached</p>
+                </div>
+            </div>
+            <div class="col-md-3 mb-4">
+                <div class="p-4 bg-white shadow rounded">
+                    <i class="fas fa-hand-holding-usd fa-2x text-danger mb-2"></i>
+                    <h3 class="fw-bold">$2M+</h3>
+                    <p>Scholarships Awarded</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

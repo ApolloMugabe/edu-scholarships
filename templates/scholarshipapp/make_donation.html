@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}Make a Donation - EduScholarships{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">Make a Donation</h2>
+                    
+                    <div class="mb-4">
+                        <h4>Scholarship Program Details</h4>
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ program.title }}</h5>
+                                <p class="card-text">{{ program.description }}</p>
+                                <div class="mb-3">
+                                    <h6>Requirements:</h6>
+                                    <p>{{ program.requirements }}</p>
+                                </div>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <span class="text-primary">
+                                        <strong>Target Amount:</strong> ${{ program.amount }}
+                                    </span>
+                                    <span class="text-muted">
+                                        <i class="fas fa-calendar-alt me-2"></i>
+                                        Deadline: {{ program.deadline|date:"F d, Y" }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <form method="post" class="needs-validation" novalidate>
+                        {% csrf_token %}
+                        
+                        <div class="mb-4">
+                            <label for="{{ form.amount.id_for_label }}" class="form-label">
+                                Donation Amount
+                                <span class="text-danger">*</span>
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text">$</span>
+                                {% render_field form.amount class="form-control" %}
+                            </div>
+                            {% if form.amount.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.amount.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="{{ form.notes.id_for_label }}" class="form-label">
+                                Additional Notes
+                            </label>
+                            {% render_field form.notes class="form-control" %}
+                            <small class="text-muted">Optional: Add any comments or special instructions for your donation.</small>
+                            {% if form.notes.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.notes.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <div class="alert alert-info">
+                            <h5 class="alert-heading">
+                                <i class="fas fa-info-circle me-2"></i>
+                                Important Information
+                            </h5>
+                            <ul class="mb-0">
+                                <li>Your donation will be used exclusively for this scholarship program.</li>
+                                <li>You will receive a confirmation email with the donation details.</li>
+                                <li>Tax receipts will be issued for all donations.</li>
+                            </ul>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-hand-holding-usd me-2"></i>
+                                Confirm Donation
+                            </button>
+                            <a href="{% url 'donor_dashboard' %}" class="btn btn-outline-secondary">
+                                Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card mt-4 shadow-sm">
+                <div class="card-body">
+                    <h4 class="card-title">Why Donate?</h4>
+                    <div class="row">
+                        <div class="col-md-4 text-center mb-3">
+                            <i class="fas fa-graduation-cap fa-2x text-primary mb-2"></i>
+                            <h5>Support Education</h5>
+                            <p class="small">Help talented students achieve their educational dreams.</p>
+                        </div>
+                        <div class="col-md-4 text-center mb-3">
+                            <i class="fas fa-heart fa-2x text-primary mb-2"></i>
+                            <h5>Make a Difference</h5>
+                            <p class="small">Your contribution can change someone's life.</p>
+                        </div>
+                        <div class="col-md-4 text-center mb-3">
+                            <i class="fas fa-globe fa-2x text-primary mb-2"></i>
+                            <h5>Global Impact</h5>
+                            <p class="small">Support education and development worldwide.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Form validation
+    (function () {
+        'use strict'
+        var forms = document.querySelectorAll('.needs-validation')
+        Array.prototype.slice.call(forms)
+            .forEach(function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (!form.checkValidity()) {
+                        event.preventDefault()
+                        event.stopPropagation()
+                    }
+                    form.classList.add('was-validated')
+                }, false)
+            })
+    })()
+</script>
+{% endblock %} 

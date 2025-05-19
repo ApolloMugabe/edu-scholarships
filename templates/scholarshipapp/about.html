@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+
+{% block title %}About Us - EduScholarships{% endblock %}
+
+{% block content %}
+<div class="hero-section">
+    <div class="container">
+        <h1 class="display-4 mb-4">About EduScholarships</h1>
+        <p class="lead">Bridging the gap between ambitious students and generous donors.</p>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-md-6">
+            <h2 class="section-title">Our Mission</h2>
+            <p>At EduScholarships, we believe that every student deserves access to quality education regardless of their financial situation. Our mission is to connect deserving students with generous donors who share our vision of making education accessible to all.</p>
+            <p>We strive to create a transparent and efficient platform where:</p>
+            <ul>
+                <li>Students can easily find and apply for relevant scholarships</li>
+                <li>Donors can contribute directly to students' educational journeys</li>
+                <li>Educational dreams become reality through community support</li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <img src="scholarships\eduscholarships\static\images\prestigeous universities\03cdd9fe-ba54-4f15-a6ca-c81f3de6fe16.jpeg" alt="University" class="img-fluid rounded shadow">
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-users fa-3x mb-3 text-primary"></i>
+                    <h3>Community-Driven</h3>
+                    <p>We foster a supportive community where donors and students can connect and create meaningful impact together.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-shield-alt fa-3x mb-3 text-primary"></i>
+                    <h3>Transparent</h3>
+                    <p>We ensure complete transparency in our processes, from application to fund distribution.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <div class="card-body text-center">
+                    <i class="fas fa-heart fa-3x mb-3 text-primary"></i>
+                    <h3>Impactful</h3>
+                    <p>Every donation makes a real difference in a student's life, creating lasting positive change.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-md-6 order-md-2">
+            <h2 class="section-title">Our Mentorship Program</h2>
+            <p>Beyond financial support, we offer comprehensive mentorship programs to ensure student success:</p>
+            <ul>
+                <li>One-on-one guidance from experienced professionals</li>
+                <li>Career development workshops and resources</li>
+                <li>Networking opportunities with industry leaders</li>
+                <li>Academic support and counseling</li>
+                <li>Personal development training</li>
+            </ul>
+            <a href="{% url 'contact' %}" class="btn btn-primary">Learn More About Mentorship</a>
+        </div>
+        <div class="col-md-6 order-md-1">
+            <img src="https://source.unsplash.com/random/600x400/?mentorship" alt="Mentorship" class="img-fluid rounded shadow">
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col-12 text-center">
+            <h2 class="section-title text-center">Our Impact</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <h3 class="display-4 text-primary">1000+</h3>
+                            <p class="lead">Students Supported</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <h3 class="display-4 text-primary">500+</h3>
+                            <p class="lead">Active Donors</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <div class="card-body text-center">
+                            <h3 class="display-4 text-primary">$2M+</h3>
+                            <p class="lead">Scholarships Awarded</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 text-center">
+            <h2 class="section-title text-center">Join Our Mission</h2>
+            <p class="lead mb-4">Be part of our community and help make education accessible to all.</p>
+            <div class="d-flex justify-content-center gap-3">
+                <a href="{% url 'student_register' %}" class="btn btn-primary btn-lg">Apply as Student</a>
+                <a href="{% url 'donor_register' %}" class="btn btn-outline-primary btn-lg">Become a Donor</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
