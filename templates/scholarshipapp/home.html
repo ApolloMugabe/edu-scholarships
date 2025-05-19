@@ -1,315 +1,97 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Home - EduScholarships{% endblock %}
+{% block title %}Edu Scholarships Portal - Home{% endblock %}
 
 {% block content %}
 <style>
-    /* Hero Section */
     .hero-section {
-        background: linear-gradient(rgba(0, 123, 255, 0.9), rgba(0, 123, 255, 0.8)), url('{% static "images/hero-bg.jpg" %}');
-        background-size: cover;
-        background-position: center;
+        background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
         color: white;
-        padding: 8rem 0;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .hero-content {
-        position: relative;
-        z-index: 2;
-    }
-
-    .hero-title {
-        font-size: 3.5rem;
-        font-weight: 700;
-        margin-bottom: 1.5rem;
-        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    .hero-subtitle {
-        font-size: 1.5rem;
-        margin-bottom: 2rem;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Programs Section */
-    .programs-section {
-        padding: 5rem 0;
-        background-color: #f8f9fa;
-    }
-
-    .section-title {
-        text-align: center;
-        margin-bottom: 3rem;
-        position: relative;
-        padding-bottom: 1rem;
-    }
-
-    .section-title:after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 80px;
-        height: 3px;
-        background: var(--primary);
-    }
-
-    .program-card {
-        border: none;
-        border-radius: 15px;
-        transition: all 0.3s ease;
-        overflow: hidden;
-        height: 100%;
-    }
-
-    .program-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-    }
-
-    .program-card .card-body {
-        padding: 2rem;
-    }
-
-    .program-amount {
-        font-size: 1.25rem;
-        color: var(--primary);
-        font-weight: 600;
-    }
-
-    .program-deadline {
-        font-size: 0.9rem;
-        color: #6c757d;
-    }
-
-    /* Testimonials Section */
-    .testimonials-section {
-        padding: 5rem 0;
-        background: white;
-    }
-
-    .testimonial-card {
-        background: white;
-        border-radius: 20px;
-        padding: 2rem;
-        text-align: center;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-        height: 100%;
-        transition: all 0.3s ease;
-    }
-
-    .testimonial-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
-    }
-
-    .testimonial-img {
-        width: 120px;
-        height: 120px;
-        border-radius: 50%;
-        margin: 0 auto 1.5rem;
-        object-fit: cover;
-        border: 5px solid var(--primary);
-    }
-
-    .testimonial-text {
-        font-style: italic;
-        color: #555;
-        margin: 1.5rem 0;
-        line-height: 1.8;
-    }
-
-    .testimonial-author {
-        font-weight: 600;
-        color: var(--primary);
-        margin-bottom: 0.25rem;
-    }
-
-    .testimonial-role {
-        font-size: 0.9rem;
-        color: #6c757d;
-    }
-
-    /* Stats Section */
-    .stats-section {
         padding: 4rem 0;
-        background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
-        color: white;
-    }
-
-    .stat-item {
         text-align: center;
-        padding: 2rem;
+        margin: -1.5rem -1.5rem 3rem -1.5rem;
     }
 
-    .stat-number {
+    .hero-section h1 {
         font-size: 2.5rem;
-        font-weight: 700;
         margin-bottom: 1rem;
     }
 
-    .stat-label {
-        font-size: 1.1rem;
+    .hero-section p {
+        font-size: 1.2rem;
+        max-width: 600px;
+        margin: 0 auto 2rem;
         opacity: 0.9;
     }
 
-    /* CTA Section */
-    .cta-section {
-        padding: 5rem 0;
-        background: #f8f9fa;
-        text-align: center;
+    .features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
     }
 
-    .cta-title {
-        font-size: 2.5rem;
-        margin-bottom: 1.5rem;
+    .feature-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        transition: transform 0.3s;
     }
 
-    .cta-text {
-        font-size: 1.2rem;
-        color: #6c757d;
-        margin-bottom: 2rem;
+    .feature-card:hover {
+        transform: translateY(-5px);
     }
 
-    .btn-cta {
-        padding: 1rem 2.5rem;
-        font-size: 1.1rem;
-        border-radius: 50px;
-        text-transform: uppercase;
-        letter-spacing: 1px;
+    .feature-card h3 {
+        color: var(--primary-color);
+        margin-bottom: 1rem;
+    }
+
+    .cta-button {
+        display: inline-block;
+        padding: 1rem 2rem;
+        background-color: var(--secondary-color);
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+
+    .cta-button:hover {
+        background-color: #2980b9;
+        color: white;
+    }
+
+    @media (max-width: 768px) {
+        .hero-section h1 {
+            font-size: 2rem;
+        }
     }
 </style>
 
-<!-- Hero Section -->
 <section class="hero-section">
     <div class="container">
-        <div class="hero-content text-center">
-            <h1 class="hero-title">Welcome to EduScholarships</h1>
-            <p class="hero-subtitle">Empowering students through education by connecting them with life-changing opportunities.</p>
-            <a href="{% url 'scholarship_programs' %}" class="btn btn-light btn-lg px-5 py-3">Browse Scholarships</a>
-        </div>
+        <h1>Find Your Perfect Scholarship Opportunity</h1>
+        <p>Discover and apply for scholarships that match your academic goals and aspirations. We connect students with educational opportunities worldwide.</p>
+        <a href="{% url 'scholarship_programs' %}" class="cta-button">Browse Scholarships</a>
     </div>
 </section>
 
-<!-- Stats Section -->
-<section class="stats-section">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <div class="stat-item">
-                    <div class="stat-number">1000+</div>
-                    <div class="stat-label">Students Supported</div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="stat-item">
-                    <div class="stat-number">$5M+</div>
-                    <div class="stat-label">Scholarships Awarded</div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="stat-item">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label">Partner Universities</div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="stat-item">
-                    <div class="stat-number">95%</div>
-                    <div class="stat-label">Success Rate</div>
-                </div>
-            </div>
+<section class="container">
+    <div class="features-grid">
+        <div class="feature-card">
+            <h3>🎓 Diverse Opportunities</h3>
+            <p>Access a wide range of scholarships for undergraduate, graduate, and doctoral studies across various fields.</p>
         </div>
-    </div>
-</section>
-
-<!-- Featured Programs -->
-<section class="programs-section">
-    <div class="container">
-        <h2 class="section-title">Featured Scholarship Programs</h2>
-        <div class="row">
-            {% for program in programs %}
-            <div class="col-md-4 mb-4">
-                <div class="card program-card">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ program.title }}</h5>
-                        <p class="card-text">{{ program.description|truncatewords:30 }}</p>
-                        <div class="d-flex justify-content-between align-items-center mb-3">
-                            <span class="program-amount">${{ program.amount }}</span>
-                            <span class="program-deadline">
-                                <i class="fas fa-calendar-alt me-2"></i>
-                                {{ program.deadline|date:"M d, Y" }}
-                            </span>
-                        </div>
-                        <a href="{% url 'apply_scholarship' program.id %}" class="btn btn-primary w-100">Apply Now</a>
-                    </div>
-                </div>
-            </div>
-            {% endfor %}
+        <div class="feature-card">
+            <h3>📚 Educational Resources</h3>
+            <p>Get access to study materials, application guides, and expert advice to enhance your academic journey.</p>
         </div>
-    </div>
-</section>
-
-<!-- Testimonials -->
-<section class="testimonials-section">
-    <div class="container">
-        <h2 class="section-title">What Our Scholars Say</h2>
-        <div class="row">
-            <!-- Emily -->
-            <div class="col-md-3 mb-4">
-                <div class="testimonial-card">
-                    <img src="{% static 'images/testimonials/emily.jpg' %}" alt="Emily Johnson" class="testimonial-img">
-                    <h5 class="testimonial-author">Emily Johnson</h5>
-                    <p class="testimonial-role">Computer Science Graduate</p>
-                    <p class="testimonial-text">"The scholarship enabled me to pursue my dream of studying Computer Science. I am now working at a leading tech company, developing AI solutions that make a difference."</p>
-                </div>
-            </div>
-
-            <!-- Michael -->
-            <div class="col-md-3 mb-4">
-                <div class="testimonial-card">
-                    <img src="{% static 'images/testimonials/micheal.jpg' %}" alt="Michael Chen" class="testimonial-img">
-                    <h5 class="testimonial-author">Michael Chen</h5>
-                    <p class="testimonial-role">Business Administration Student</p>
-                    <p class="testimonial-text">"Thanks to the scholarship, I could focus on my studies without financial worries. It opened doors to incredible opportunities in the business world."</p>
-                </div>
-            </div>
-
-            <!-- Sarah -->
-            <div class="col-md-3 mb-4">
-                <div class="testimonial-card">
-                    <img src="{% static 'images/testimonials/sarah.jpg' %}" alt="Sarah Williams" class="testimonial-img">
-                    <h5 class="testimonial-author">Sarah Williams</h5>
-                    <p class="testimonial-role">Engineering Graduate</p>
-                    <p class="testimonial-text">"The mentorship and financial support helped me excel in my engineering studies. Now I'm leading innovative projects in sustainable energy."</p>
-                </div>
-            </div>
-
-            <!-- David -->
-            <div class="col-md-3 mb-4">
-                <div class="testimonial-card">
-                    <img src="{% static 'images/testimonials/david.jpg' %}" alt="David Martinez" class="testimonial-img">
-                    <h5 class="testimonial-author">David Martinez</h5>
-                    <p class="testimonial-role">Physics Researcher</p>
-                    <p class="testimonial-text">"The scholarship program not only funded my education but also connected me with brilliant minds in physics. The research opportunities were incredible."</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- CTA Section -->
-<section class="cta-section">
-    <div class="container">
-        <h2 class="cta-title">Ready to Start Your Journey?</h2>
-        <p class="cta-text">Join thousands of students who have transformed their lives through our scholarship programs.</p>
-        <div class="d-flex justify-content-center gap-3">
-            <a href="{% url 'student_register' %}" class="btn btn-primary btn-cta">Apply as Student</a>
-            <a href="{% url 'donor_register' %}" class="btn btn-outline-primary btn-cta">Become a Donor</a>
+        <div class="feature-card">
+            <h3>💼 Career Guidance</h3>
+            <p>Receive personalized guidance on career paths and educational opportunities that align with your goals.</p>
         </div>
     </div>
 </section>
